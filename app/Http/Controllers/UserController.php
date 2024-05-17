@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\user;
+use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -40,6 +41,40 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('users.index')->with('success', 'User Created successfully');
+    }
 
+    //edit
+    public function edit(User $user){
+        return view('pages.users.edit', compact('user'));
+    }
+
+    //update
+    public function update(Request $request, User $user){
+        $request->validate([
+            'name'  => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $user->update([
+            'name'  => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'role'  => $request->role,
+        ]);
+
+        //if password filled
+        if ($request->password) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
+
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
+    }
+
+    //destroy
+    public function destroy(User $user){
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }
 }
