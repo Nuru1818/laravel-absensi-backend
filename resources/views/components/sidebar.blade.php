@@ -15,12 +15,12 @@
             <li class="menu-header">Pages</li>
             <li class="{{ Request::is('user') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="#"><i class="fas fa-fire"></i> <span>Absensi</span></a>
+                    href="#"><i class="fas fa-calendar"></i> <span>Absensi</span></a>
             </li>
             <li class="menu-header">Settings</li>
             <li class="{{ Request::is('user') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="{{ route('users.index') }}"><i class="fas fa-fire"></i> <span>Users</span></a>
+                    href="{{ route('users.index') }}"><i class="fas fa-user"></i> <span>Users</span></a>
             </li>
         </ul>
     </aside>
