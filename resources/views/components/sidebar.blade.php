@@ -13,9 +13,9 @@
                     href="{{ url('home') }}"><i class="fas fa-fire"></i> <span>Home</span></a>
             </li>
             <li class="menu-header">Pages</li>
-            <li class="{{ Request::is('absensis') ? 'active' : '' }}">
+            <li class="{{ Request::is('attendances') ? 'active' : '' }}">
                 <a class="nav-link"
-                    href="#"><i class="fas fa-calendar"></i> <span>Absensi</span></a>
+                    href="{{ route('attendances.index') }}"><i class="fas fa-calendar"></i> <span>Absensi</span></a>
             </li>
             <li class="menu-header">Settings</li>
             <li class="{{ Request::is('users') ? 'active' : '' }}">
