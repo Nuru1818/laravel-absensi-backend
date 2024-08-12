@@ -21,3 +21,12 @@ Route::post('/checkin', [App\Http\Controllers\Api\AttendanceController::class, '
 
 //checkout
 Route::post('/checkout', [App\Http\Controllers\Api\AttendanceController::class, 'checkout'])->middleware('auth:sanctum');
+
+//is checkin
+Route::get('/is-checkin', [App\Http\Controllers\Api\AttendanceController::class, 'isCheckedin'])->middleware('auth:sanctum');
+
+//update profile
+Route::post('/update-profile', [App\Http\Controllers\Api\AttendanceController::class, 'updateProfile'])->middleware('auth:sanctum');
+
+//profile update
+Route::post('/profile-update', [App\Http\Controllers\Api\AuthController::class, 'profileUpdate'])->middleware('auth:sanctum');

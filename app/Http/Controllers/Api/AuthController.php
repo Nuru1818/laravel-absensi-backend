@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -39,5 +40,53 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return response(['message' => 'Logged Out'], 200);
+    }
+
+    // update image profile & face_embedding
+    public function updateProfile(Request $request){
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'face_embedding' => 'required',
+        ]);
+
+        $user = $request->user();
+        $image = $request->file('image');
+        $face_embedding = $request->face_embedding;
+
+        // save image
+        $image->storeAs('public/images', $image->hashName());
+        $user->image_url = $image->hashName();
+        $user->face_embedding = $face_embedding;
+        $user->save();
+
+        return response([
+            'message' => 'Profile Updated',
+            'user' => $user,
+        ], 200);
+    }
+
+    //checkout
+    public function profileUpdate(Request $request){
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'face_embedding' => 'required',
+        ]);
+
+        $user = $request->user();
+        $image = $request->file('image');
+        $face_embedding = $request->face_embedding;
+
+        // save image
+        $image->storeAs('public/images', $image->hashName());
+        $user->image_url = $image->hashName();
+        $user->face_embedding = $face_embedding;
+        $user->save();
+
+
+        return response([
+            'message' => 'Profile Updated',
+            'user' => $user,
+        ], 200);
     }
 }
