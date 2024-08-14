@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         //data dummy for attendance auto generate
         $this->call([
             AttendanceSeeder::class,
+            PermissionSeeder::class,
         ]);
     }
 }

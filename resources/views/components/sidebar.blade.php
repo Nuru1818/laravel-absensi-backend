@@ -17,6 +17,10 @@
                 <a class="nav-link"
                     href="{{ route('attendances.index') }}"><i class="fas fa-calendar"></i> <span>Attendances</span></a>
             </li>
+            <li class="{{ Request::is('permissions') ? 'active' : '' }}">
+                <a class="nav-link"
+                    href="{{ route('permissions.index') }}"><i class="fas fa-file-alt"></i> <span>Permissions</span></a>
+            </li>
             <li class="menu-header">Settings</li>
             <li class="{{ Request::is('users') ? 'active' : '' }}">
                 <a class="nav-link"

@@ -30,3 +30,6 @@ Route::post('/update-profile', [App\Http\Controllers\Api\AttendanceController::c
 
 //profile update
 Route::post('/profile-update', [App\Http\Controllers\Api\AuthController::class, 'profileUpdate'])->middleware('auth:sanctum');
+
+//create permission
+Route::apiResource('/api-permissions', App\Http\Controllers\Api\PermissionController::class)->middleware('auth:sanctum');
