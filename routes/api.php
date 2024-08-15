@@ -33,3 +33,6 @@ Route::post('/profile-update', [App\Http\Controllers\Api\AuthController::class, 
 
 //create permission
 Route::apiResource('/api-permissions', App\Http\Controllers\Api\PermissionController::class)->middleware('auth:sanctum');
+
+//notes
+Route::apiResource('/api-notes', App\Http\Controllers\Api\NoteController::class)->middleware('auth:sanctum');
